@@ -12,5 +12,16 @@
     "package"
   ],
   "author": "Guillermo Moreno <contact@memobrown.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "^0.15.0",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {
+    "date-fns": "^2.15.0",
+    "webpack": "^4.44.1"
+  },
+  "optionalDependencies": {
+    "eslint": "^7.6.0"
+  }
 }
