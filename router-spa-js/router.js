@@ -4,6 +4,16 @@ class Router {
         this._loadInitialRoute();
     }
 
+
+    loadRoute(...urlSegs){
+        const matchedRoute = this._matchUrlToRoute(urlSegs);
+        const url = `/${urlSegs.join('/')}`;
+        history.pushState({},'this works', url);
+
+        const routerOutElement = document.querySelectorAll('[data-router]')[0];
+        routerOutElement.innerHTML = matchedRoute.template;
+    }
+
     _matchUrlToRoute(urlSegs){
         const matchedRoute = this.routes.find(route => {
             const routePathSegs = route.path.split('/').slice(1)
