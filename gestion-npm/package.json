@@ -14,7 +14,6 @@
   "author": "Guillermo Moreno <contact@memobrown.com>",
   "license": "MIT",
   "dependencies": {
-    "json-server": "^0.15.0",
     "moment": "^2.27.0"
   },
   "devDependencies": {
