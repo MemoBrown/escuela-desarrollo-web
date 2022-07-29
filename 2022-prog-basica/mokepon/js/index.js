@@ -26,6 +26,7 @@ const newEnemyAttacks = document.getElementById("enemy-attacks")
 
 const showRestartButton = document.getElementById('restart')
 
+let mokepones = []
 let playerAttack
 let enemyAttack
 let playerLifes = 6
@@ -45,6 +46,8 @@ let ratigueya = new Mokepon('Ratigueya', null, 5)
 let langostelvis = new Mokepon('Langostelvis', null, 5)
 let tucapalma = new Mokepon('Tucapalma', null, 5)
 let pydos = new Mokepon('Pydos', null, 5)
+
+mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
 
 function startGame() {
   hideRestartButton.style.display = 'none'
