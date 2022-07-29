@@ -4,62 +4,89 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./js/index.js"></script>
+  <!-- minify -->
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <!-- latest -->
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <!-- core style only -->
+  <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
   <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+  <link rel="stylesheet" href="./css/styles.css">
   <title>👾 Mokepon!</title>
 </head>
 <body>
-  <h1>MOKEPON! 🔥💧🌱</h1>
+  <h1>MOKEPON!</h1>
 
   <section id="select-pet">
+    
     <h2>Elige a tu mascota:</h2>
 
     <div class="form">
-      <input type="radio" name="pet" id="hipodoge">
-      <label for="hipodoge">Hipodoge</label>
+      <label for="hipodoge">
+        <input type="radio" name="pet" id="hipodoge" class="nes-radio is-dark" checked>
+        <span>Hipodoge</span>
+      </label>
       <br>
-      <input type="radio" name="pet" id="capipepo">
-      <label for="capipepo">Capipepo</label>
+      <label for="capipepo">
+        <input type="radio" name="pet" id="capipepo" class="nes-radio is-dark">
+        <span>Capipepo</span>
+      </label>
       <br>
-      <input type="radio" name="pet" id="ratigueya">
-      <label for="ratigueya">Ratigueya</label>
+      <label for="ratigueya">
+        <input type="radio" name="pet" id="ratigueya" class="nes-radio is-dark">
+        <span>Ratigueya</span>
+      </label>
       <br>
-      <input type="radio" name="pet" id="langostelvis">
-      <label for="langostelvis">Langostelvis</label>
+      <label for="langostelvis">
+        <input type="radio" name="pet" id="langostelvis" class="nes-radio is-dark">
+        <span>Langostelvis</span>
+      </label>
       <br>
-      <input type="radio" name="pet" id="tucapalma">
-      <label for="tucapalma">Tucapalma</label>
+      <label for="tucapalma">
+        <input type="radio" name="pet" id="tucapalma" class="nes-radio is-dark">
+        <span>Tucapalma</span>
+      </label>
       <br>
-      <input type="radio" name="pet" id="pydos">
-      <label for="pydos">Pydos</label>
+      <label for="pydos">
+        <input type="radio" name="pet" id="pydos" class="nes-radio is-dark">
+        <span>Pydos</span>
+      </label>
       <br>
-      <button id="pet-button">Seleccionar</button>
+
+      <button id="pet-button" type="button" class="nes-btn is-primary">Seleccionar</button>
     </div>
   </section>
 
-  <section id="select-attack">
-    <p>
-      Tu mascota <span id="pet-selected"></span>
-      tiene <span id="pet-lifes">3</span> vidas
-    </p>
-    <p>
-      La mascota <span id="enemy-pet-selected"></span>
-      del enemigo tiene
-      <span id="enemy-pet-lifes">3</span> vidas
-    </p>
+  <section id="select-attack" class="select-attack section-center">
+    <div class="buttons-container">
+      <div>
+        <button id="fire-btn" class="nes-btn is-error">Fuego</button>
+        <button id="water-btn" class="nes-btn is-primary">Agua</button>
+        <button id="earth-btn" class="nes-btn is-success">Tierra</button>
+      </div>
+      <section id="restart">
+        <button id="restart-button" class="nes-btn is-warning">Reiniciar</button>
+      </section>
+    </div>
 
-    <div>
-      <button id="fire-btn">Fuego 🔥</button>
-      <button id="water-btn">Agua 💧</button>
-      <button id="earth-btn">Tierra 🌱</button>
+    <div class="nes-container is-rounded is-dark">
+      <section id="messages-container"><p id="attack-result">Mucha suerte!</p></section>
+    </div>
+
+
+    <div class="cards-container section-center">
+      <div class="nes-container is-rounded is-dark card">
+        <p id="pet-lifes">6</p>
+        <p id="pet-selected" class="nes-text is-primary"></p>
+        <div id="player-attacks"></div>
+      </div>
+      <div class="nes-container is-rounded is-dark card">
+        <p id="enemy-pet-lifes">6</p>
+        <p id="enemy-pet-selected" class="nes-text is-error"></p>
+        <div id="enemy-attacks"></div>
+      </div>
     </div>
   </section>
-
-  <section id="messages-container"></section>
-
-  <section id="restart">
-    <button id="restart-button">Reiniciar</button>
-  </section>
-
+  <script src="./js/index.js"></script>
 </body>
 </html>

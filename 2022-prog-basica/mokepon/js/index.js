@@ -1,30 +1,65 @@
+const hideRestartButton = document.getElementById('restart')
+const showSelectAttack = document.getElementById('select-attack')
+const petButtonPlayer = document.getElementById('pet-button')
+const fireBtn = document.getElementById('fire-btn')
+const waterBtn = document.getElementById('water-btn')
+const earthBtn = document.getElementById('earth-btn')
+const restartBtn = document.getElementById('restart-button')
+
+const hideSelectPet = document.getElementById('select-pet')
+const inputHipodoge = document.getElementById('hipodoge')
+const inputCapipepo = document.getElementById('capipepo')
+const inputRatigueya = document.getElementById('ratigueya')
+const inputLangostelvis = document.getElementById('langostelvis')
+const inputTucapalma = document.getElementById('tucapalma')
+const inputPydos = document.getElementById('pydos')
+const petSelected = document.getElementById('pet-selected')
+
+const petSelectedEnemy = document.getElementById('enemy-pet-selected')
+
+const petLifes = document.getElementById('pet-lifes')
+const enemyPetLifes = document.getElementById('enemy-pet-lifes')
+
+const sectionMessages = document.getElementById("attack-result")
+const newPlayerAttacks = document.getElementById("player-attacks")
+const newEnemyAttacks = document.getElementById("enemy-attacks")
+
+const showRestartButton = document.getElementById('restart')
+
 let playerAttack
 let enemyAttack
-let result
+let playerLifes = 6
+let enemyLifes = 6
+
+class Mokepon {
+  constructor(nombre, foto, vida) {
+    this.nombre = nombre
+    this.foto = foto
+    this.vida = vida
+  }
+}
+
+let hipodoge = new Mokepon('Hipodoge', null, 5)
+let capipepo = new Mokepon('Capipepo', null, 5)
+let ratigueya = new Mokepon('Ratigueya', null, 5)
+let langostelvis = new Mokepon('Langostelvis', null, 5)
+let tucapalma = new Mokepon('Tucapalma', null, 5)
+let pydos = new Mokepon('Pydos', null, 5)
 
 function startGame() {
-  let petButtonPlayer = document.getElementById('pet-button')
+  hideRestartButton.style.display = 'none'
+  showSelectAttack.style.display = 'none'
   petButtonPlayer.addEventListener('click', selectPetPlayer)
-
-  let fireBtn = document.getElementById('fire-btn')
   fireBtn.addEventListener('click', fireAttack)
-
-  let waterBtn = document.getElementById('water-btn')
   waterBtn.addEventListener('click', waterAttack)
-
-  let earthBtn = document.getElementById('earth-btn')
   earthBtn.addEventListener('click', earthAttack)
+  restartBtn.addEventListener('click', restartGame)
 }
 
 function selectPetPlayer() {
-  let inputHipodoge = document.getElementById('hipodoge')
-  let inputCapipepo = document.getElementById('capipepo')
-  let inputRatigueya = document.getElementById('ratigueya')
-  let inputLangostelvis = document.getElementById('langostelvis')
-  let inputTucapalma = document.getElementById('tucapalma')
-  let inputPydos = document.getElementById('pydos')
-  let petSelected = document.getElementById('pet-selected')
-  
+  hideSelectPet.style.display = 'none'
+  showSelectAttack.style.display = 'block'
+
   if(inputHipodoge.checked == true) {
     petSelected.innerHTML = "Hipodoge"
   } else if(inputCapipepo.checked == true) {
@@ -46,7 +81,6 @@ function selectPetPlayer() {
 
 function selectPetPlayerEnemy() {
   let randomPet = random(1, 6)
-  let petSelectedEnemy = document.getElementById('enemy-pet-selected')
 
   if(randomPet == 1) {
     petSelectedEnemy.innerHTML = "Hipodoge"
@@ -97,25 +131,59 @@ function enemyRandomAttack() {
 
 function kombat() {
   if (enemyAttack == playerAttack) {
-    result = "Empate 😐"
+    createMessage("Empate 😐")
   } else if (playerAttack == 'Fuego 🔥' && enemyAttack == 'Tierra 🌱') {
-    result = "Ganaste 🏆"
+    createMessage("Ganaste 🏆")
+    enemyLifes--
+    enemyPetLifes.innerHTML = enemyLifes
   } else if (playerAttack == 'Agua 💧' && enemyAttack == 'Fuego 🔥') {
-    result = "Ganaste 🏆"
+    createMessage("Ganaste 🏆")
+    enemyLifes--
+    enemyPetLifes.innerHTML = enemyLifes
   } else if (playerAttack == 'Tierra 🌱' && enemyAttack == 'Agua 💧') {
-    result = "Ganaste 🏆"
+    createMessage("Ganaste 🏆")
+    enemyLifes--
+    enemyPetLifes.innerHTML = enemyLifes
   } else {
-    result = "Perdiste 😓"
+    createMessage("Perdiste 😓")
+    playerLifes--
+    petLifes.innerHTML = playerLifes
   }
 
-  createMessage()
+  checkLifes()
+
 }
 
-function createMessage() {
-  let sectionMessages = document.getElementById("messages-container")
-  let message = document.createElement('p')
-  message.innerHTML = `Tu mascota ataco con ${playerAttack}, la mascota del enemigo ataco con ${enemyAttack} --- ${result}`
-  sectionMessages.appendChild(message)
+function checkLifes() {
+  if(enemyLifes == 0) {
+    createLastMessage('Ganaste!! 🏆. La mascota de tu enemigo se quedo sin vidas!')
+  } else if(playerLifes == 0) {
+    createLastMessage('Perdiste 😓. Ya no te quedan mas vidas.')
+  }
+}
+
+function createMessage(result) {
+  let newAttackPlayer = document.createElement('p')
+  let newAttackEnemy = document.createElement('p')
+
+  sectionMessages.innerHTML = result
+  newAttackPlayer.innerHTML = playerAttack
+  newAttackEnemy.innerHTML = enemyAttack
+  newPlayerAttacks.appendChild(newAttackPlayer)
+  newEnemyAttacks.appendChild(newAttackEnemy)
+}
+
+function createLastMessage(gameResult) {
+  sectionMessages.innerHTML = gameResult
+  petButtonPlayer.addEventListener('click', selectPetPlayer)
+  fireBtn.disabled = true
+  waterBtn.disabled = true
+  earthBtn.disabled = true
+  showRestartButton.style.display = 'block'
+}
+
+function restartGame() {
+  location.reload()
 }
 
 function random(min, max) {

@@ -7,5 +7,55 @@
 }
 html {
   font-size: 62.5%;
-  font-family: "DM Sans", sans-serif;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.subtitle {
+  margin: 3rem 0;
+}
+body {
+  font-family: 'Kongtext';
+  padding: 3rem;
+  background-color: #212529;
+  color: #fff;
+}
+  @font-face {
+    font-family: 'kongtext';
+    src: url("./kongtext.ttf");
+  }
+.select-attack {
+  margin: 3rem 0;
+}
+
+.form {
+  margin: 3rem 0;
+}
+#pet-button {
+  margin-top: 2rem;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  justify-content: center;
+}
+
+.section-center {
+  margin: 30px auto;
+  width: 50%;
+}
+
+#enemy-pet-lifes,
+#pet-lifes {
+  text-align: center;
+  font-size: 40px;
 }
