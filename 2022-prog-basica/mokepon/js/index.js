@@ -21,6 +21,9 @@ const showRestartButton = document.getElementById('restart')
 const form = document.getElementById('form')
 const contenedorAtaques = document.getElementById('contenedor-ataques')
 
+const sectionViewMap = document.getElementById('view-map')
+const mapa = document.getElementById('mapa')
+
 let mokepones = []
 let playerAttack = []
 let enemyAttack = []
@@ -108,6 +111,7 @@ mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
 
 
 function startGame() {
+
   
   mokepones.forEach((mokepon) => {
     opcionDeMokepones = `
@@ -131,13 +135,14 @@ function startGame() {
   hideRestartButton.style.display = 'none'
   showSelectAttack.style.display = 'none'
   petButtonPlayer.addEventListener('click', selectPetPlayer)
-
+  sectionViewMap.style.display = 'none'
   restartBtn.addEventListener('click', restartGame)
 }
 
 function selectPetPlayer() {
   hideSelectPet.style.display = 'none'
   showSelectAttack.style.display = 'block'
+  sectionViewMap.style.display = 'block'
 
   if(inputHipodoge.checked == true) {
     petSelected.innerHTML = inputHipodoge.id
@@ -196,14 +201,17 @@ function secuenciaAtaque() {
         playerAttack.push('Fuego 🔥')
         console.log(playerAttack)
         boton.classList.add('is-error')
+        boton.disabled = true
       } else if(e.target.textContent == 'Agua') {
         playerAttack.push('Agua 💧')
         console.log(playerAttack)
         boton.classList.add('is-primary')
+        boton.disabled = true
       } else {
         playerAttack.push('Tierra 🌱')
         console.log(playerAttack)
         boton.classList.add('is-success')
+        boton.disabled = true
       }
       enemyRandomAttack()
     })
@@ -247,8 +255,6 @@ function kombat() {
     if(playerAttack[index] === enemyAttack[index]) {
       indexAmbosOponentes(index, index)
       createMessage("Empate 😐")
-      victoriasJugador++
-      petLifes.innerHTML = playerLifes
     } else if(playerAttack[index] === 'Fuego 🔥' && enemyAttack[index] === 'Tierra 🌱'){
         indexAmbosOponentes(index, index)
         createMessage("Ganaste 🏆")
@@ -301,9 +307,6 @@ function createMessage(result) {
 function createLastMessage(gameResult) {
   sectionMessages.innerHTML = gameResult
   petButtonPlayer.addEventListener('click', selectPetPlayer)
-  fireBtn.disabled = true
-  waterBtn.disabled = true
-  earthBtn.disabled = true
   showRestartButton.style.display = 'block'
 }
 
