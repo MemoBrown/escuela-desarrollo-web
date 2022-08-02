@@ -38,6 +38,10 @@ let fireBtn
 let waterBtn
 let earthBtn
 let botones = []
+let indexAtaqueJugador
+let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 let playerLifes = 6
 let enemyLifes = 6
 
@@ -233,29 +237,39 @@ function startFight() {
   }
 }
 
+function indexAmbosOponentes(jugador, enemigo) {
+  indexAtaqueJugador = playerAttack[jugador]
+  indexAtaqueEnemigo = enemyAttack[enemigo]
+}
+
 function kombat() {
   for (let index = 0; index < playerAttack.length; index++) {
-    console.log(playerAttack[index])
-  }
-
-  if (enemyAttack == playerAttack) {
-    createMessage("Empate 😐")
-  } else if (playerAttack == 'Fuego 🔥' && enemyAttack == 'Tierra 🌱') {
-    createMessage("Ganaste 🏆")
-    enemyLifes--
-    enemyPetLifes.innerHTML = enemyLifes
-  } else if (playerAttack == 'Agua 💧' && enemyAttack == 'Fuego 🔥') {
-    createMessage("Ganaste 🏆")
-    enemyLifes--
-    enemyPetLifes.innerHTML = enemyLifes
-  } else if (playerAttack == 'Tierra 🌱' && enemyAttack == 'Agua 💧') {
-    createMessage("Ganaste 🏆")
-    enemyLifes--
-    enemyPetLifes.innerHTML = enemyLifes
-  } else {
-    createMessage("Perdiste 😓")
-    playerLifes--
-    petLifes.innerHTML = playerLifes
+    if(playerAttack[index] === enemyAttack[index]) {
+      indexAmbosOponentes(index, index)
+      createMessage("Empate 😐")
+      victoriasJugador++
+      petLifes.innerHTML = playerLifes
+    } else if(playerAttack[index] === 'Fuego 🔥' && enemyAttack[index] === 'Tierra 🌱'){
+        indexAmbosOponentes(index, index)
+        createMessage("Ganaste 🏆")
+        victoriasJugador++
+        petLifes.innerHTML = playerLifes
+    }  else if (playerAttack[index] === 'Agua 💧' && enemyAttack[index] === 'Fuego 🔥') {
+        indexAmbosOponentes(index, index)
+        createMessage("Ganaste 🏆")
+        victoriasJugador++
+        petLifes.innerHTML = playerLifes
+    }  else if (playerAttack[index] === 'Tierra 🌱' && enemyAttack[index] === 'Agua 💧') {
+        indexAmbosOponentes(index, index)
+        createMessage("Ganaste 🏆")
+        victoriasJugador++
+        petLifes.innerHTML = playerLifes
+    }  else {
+        indexAmbosOponentes(index, index)
+        createMessage("Perdiste 😓")
+        victoriasEnemigo++
+        enemyPetLifes.innerHTML = victoriasEnemigo
+    }
   }
 
   checkLifes()
@@ -263,10 +277,12 @@ function kombat() {
 }
 
 function checkLifes() {
-  if(enemyLifes == 0) {
-    createLastMessage('Ganaste!! 🏆. La mascota de tu enemigo se quedo sin vidas!')
-  } else if(playerLifes == 0) {
-    createLastMessage('Perdiste 😓. Ya no te quedan mas vidas.')
+  if(victoriasJugador === victoriasEnemigo) {
+    createLastMessage('Esto fue un empate 😐')
+  } else if(victoriasJugador > victoriasEnemigo) {
+    createLastMessage('Felicidades, Ganaste!! 🏆')
+  } else {
+    createLastMessage('Lo sentimos, Perdiste 😓')
   }
 }
 
@@ -275,8 +291,9 @@ function createMessage(result) {
   let newAttackEnemy = document.createElement('p')
 
   sectionMessages.innerHTML = result
-  newAttackPlayer.innerHTML = playerAttack
-  newAttackEnemy.innerHTML = enemyAttack
+  newAttackPlayer.innerHTML = indexAtaqueJugador
+  newAttackEnemy.innerHTML = indexAtaqueEnemigo
+
   newPlayerAttacks.appendChild(newAttackPlayer)
   newEnemyAttacks.appendChild(newAttackEnemy)
 }

@@ -39,8 +39,11 @@ body {
 .buttons-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 2rem;
+}
+#contenedor-ataques {
+  display: flex;
 }
 
 .cards-container {
