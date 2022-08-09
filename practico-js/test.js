@@ -6,7 +6,7 @@
 // console.log("Mi nombre es " + completeName + ", pero prefiero que me digas " + nickname + ".");
 
 function saludo(name, lastName, nickname) {
-  const fullName = name + lastName
+  let fullName = name + lastName
   console.log(`Mi nombre completo es ${fullName}, pero prefiero que me digas ${nickname}`)
 }
 

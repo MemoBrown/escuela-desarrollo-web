@@ -47,6 +47,7 @@ let victoriasJugador = 0
 let victoriasEnemigo = 0
 let playerLifes = 6
 let enemyLifes = 6
+let lienzo = mapa.getContext("2d")
 
 class Mokepon {
   constructor(nombre, foto, vida) {
@@ -54,15 +55,21 @@ class Mokepon {
     this.foto = foto
     this.vida = vida
     this.ataques = []
+    this.x = 20
+    this.y = 30
+    this.width = 80
+    this.height = 80
+    this.mapaFoto = new Image()
+    this.mapaFoto.src = foto
   }
 }
 
-let hipodoge = new Mokepon('Hipodoge', null, 5)
-let capipepo = new Mokepon('Capipepo', null, 5)
-let ratigueya = new Mokepon('Ratigueya', null, 5)
-let langostelvis = new Mokepon('Langostelvis', null, 5)
-let tucapalma = new Mokepon('Tucapalma', null, 5)
-let pydos = new Mokepon('Pydos', null, 5)
+let hipodoge = new Mokepon('Hipodoge', './assets/hipodoge.png', 5)
+let capipepo = new Mokepon('Capipepo', './assets/capipepo.png', 5)
+let ratigueya = new Mokepon('Ratigueya', './assets/ratigueya.png', 5)
+let langostelvis = new Mokepon('Langostelvis', './assets/langostelvis.png', 5)
+let tucapalma = new Mokepon('Tucapalma', './assets/tucapalma.png', 5)
+let pydos = new Mokepon('Pydos', './assets/pydos.png', 5)
 
 hipodoge.ataques.push(
   {nombre: 'Agua', id: 'water-btn'},
@@ -141,8 +148,9 @@ function startGame() {
 
 function selectPetPlayer() {
   hideSelectPet.style.display = 'none'
-  showSelectAttack.style.display = 'block'
-  sectionViewMap.style.display = 'block'
+  // showSelectAttack.style.display = 'block'
+  sectionViewMap.style.display = 'flex'
+
 
   if(inputHipodoge.checked == true) {
     petSelected.innerHTML = inputHipodoge.id
@@ -316,6 +324,26 @@ function restartGame() {
 
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function pintarPersonaje() {
+  lienzo.clearRect(0, 0, mapa.width, mapa.height)
+  lienzo.drawImage(
+    capipepo.mapaFoto,
+    capipepo.x,
+    capipepo.y,
+    capipepo.width,
+    capipepo.height
+  )
+}
+
+function moverCapipepoHorizontal() {
+  capipepo.x = capipepo.x + 5
+  pintarPersonaje()
+}
+function moverCapipepoVertical() {
+  capipepo.y = capipepo.y + 5
+  pintarPersonaje()
 }
 
 window.addEventListener('load', startGame)
