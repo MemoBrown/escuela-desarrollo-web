@@ -67,6 +67,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  display: none;
 }
 #mapa {
   border: 2px solid white;
@@ -77,4 +78,9 @@ body {
   justify-content: center;
   padding: 10px;
   margin: 15px;
+}
+.arrow-container {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(2, 1fr);
 }

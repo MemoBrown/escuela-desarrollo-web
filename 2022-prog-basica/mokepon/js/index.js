@@ -35,6 +35,7 @@ let inputLangostelvis
 let inputTucapalma
 let inputPydos
 let petPlayer
+let petPlayerObject
 let ataquesMokepon
 let ataquesMokeponEnemigo
 let fireBtn
@@ -48,6 +49,9 @@ let victoriasEnemigo = 0
 let playerLifes = 6
 let enemyLifes = 6
 let lienzo = mapa.getContext("2d")
+let intervalo
+let mapaBg = new Image()
+mapaBg.src = './assets/mokemap.png'
 
 class Mokepon {
   constructor(nombre, foto, vida) {
@@ -61,6 +65,8 @@ class Mokepon {
     this.height = 80
     this.mapaFoto = new Image()
     this.mapaFoto.src = foto
+    this.velocidadX = 0
+    this.velocidadY = 0
   }
 }
 
@@ -118,8 +124,6 @@ mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
 
 
 function startGame() {
-
-  
   mokepones.forEach((mokepon) => {
     opcionDeMokepones = `
     <label for=${mokepon.nombre}>
@@ -148,9 +152,7 @@ function startGame() {
 
 function selectPetPlayer() {
   hideSelectPet.style.display = 'none'
-  // showSelectAttack.style.display = 'block'
-  sectionViewMap.style.display = 'flex'
-
+  showSelectAttack.style.display = 'block'
 
   if(inputHipodoge.checked == true) {
     petSelected.innerHTML = inputHipodoge.id
@@ -175,6 +177,8 @@ function selectPetPlayer() {
   }
 
   extraerAtaques(petPlayer)
+  sectionViewMap.style.display = 'none'
+  iniciarMapa()
   selectPetPlayerEnemy()
 }
 
@@ -207,17 +211,14 @@ function secuenciaAtaque() {
     boton.addEventListener('click', (e) => {
       if (e.target.textContent == 'Fuego') {
         playerAttack.push('Fuego 🔥')
-        console.log(playerAttack)
         boton.classList.add('is-error')
         boton.disabled = true
       } else if(e.target.textContent == 'Agua') {
         playerAttack.push('Agua 💧')
-        console.log(playerAttack)
         boton.classList.add('is-primary')
         boton.disabled = true
       } else {
         playerAttack.push('Tierra 🌱')
-        console.log(playerAttack)
         boton.classList.add('is-success')
         boton.disabled = true
       }
@@ -243,7 +244,6 @@ function enemyRandomAttack() {
   } else {
     enemyAttack.push("Tierra 🌱")
   }
-  console.log(enemyAttack)
   startFight()
 }
 
@@ -326,24 +326,76 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function pintarPersonaje() {
+function pintarCanvas() {
+  petPlayerObject.x = petPlayerObject.x + petPlayerObject.velocidadX
+  petPlayerObject.y = petPlayerObject.y + petPlayerObject.velocidadY
   lienzo.clearRect(0, 0, mapa.width, mapa.height)
   lienzo.drawImage(
-    capipepo.mapaFoto,
-    capipepo.x,
-    capipepo.y,
-    capipepo.width,
-    capipepo.height
+    mapaBg,
+    0,
+    0,
+    mapa.width,
+    mapa.height
+  )
+  lienzo.drawImage(
+    petPlayerObject.mapaFoto,
+    petPlayerObject.x,
+    petPlayerObject.y,
+    petPlayerObject.width,
+    petPlayerObject.height
   )
 }
 
-function moverCapipepoHorizontal() {
-  capipepo.x = capipepo.x + 5
-  pintarPersonaje()
+function moveRight() {
+  const myMokepon = getObjectPet()
+  myMokepon.velocidadX = 5
 }
-function moverCapipepoVertical() {
-  capipepo.y = capipepo.y + 5
-  pintarPersonaje()
+function moveLeft() {
+  petPlayerObject.velocidadX = -5
+}
+function moveDown() {
+  petPlayerObject.velocidadY = 5
+}
+function moveUp() {
+  petPlayerObject.velocidadY = -5
+}
+function stopMove() {
+  petPlayerObject.velocidadX = 0
+  petPlayerObject.velocidadY = 0
+}
+function keyPressed(event) {
+  switch (event.key) {
+    case 'ArrowUp':
+      moveUp()
+      break
+    case 'ArrowDown':
+      moveDown()
+      break
+    case 'ArrowLeft':
+      moveLeft()
+      break
+    case 'ArrowRight':
+      moveRight()
+      break
+    default:
+      break
+  }
+}
+function iniciarMapa() {
+  mapa.width = 450
+  mapa.height = 350
+  petPlayerObject = getObjectPet(petPlayer)
+  console.log(petPlayerObject, petPlayer);
+  intervalo = setInterval(pintarCanvas, 50)
+  window.addEventListener('keydown', keyPressed)
+  window.addEventListener('keyup', stopMove)
+}
+function getObjectPet() {
+  for (let i = 0; i < mokepones.length; i++) {
+    if (petPlayer === mokepones[i].nombre) {
+      return mokepones[i]
+    }
+  }
 }
 
 window.addEventListener('load', startGame)
