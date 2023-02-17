@@ -141,7 +141,7 @@ function startGame() {
       inputTucapalma = document.getElementById('Tucapalma')
       inputPydos = document.getElementById('Pydos')
 
-    })
+  })
     
   hideRestartButton.style.display = 'none'
   showSelectAttack.style.display = 'none'

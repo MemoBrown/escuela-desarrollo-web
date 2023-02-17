@@ -25,6 +25,15 @@ function calcularTriangulo(lado1, lado2, base, altura) {
   }
 }
 
+function calcularAlturaTriangulo(lado, base) {
+  if (lado == base) {
+    console.warn("Este no es un triangulo isosceles")
+  } else {
+    // h = raizcuadrada(lado**2 - (b**2)/4)
+    return Math.sqrt( (lado ** 2) - ( (base ** 2) ) / 4 ).toFixed(4)
+  }
+}
+
 console.group("Circle")
 
 const radioCirculo = 3
@@ -51,3 +60,14 @@ function calcularCirculo(radio) {
 }
 
 console.groupEnd("Circle")
+
+function calcularAlturaTrianguloEscaleno(lado1, lado2, lado3) {
+  if (lado1 == lado2 || lado1 == lado3 || lado2 == lado3) {
+    console.warn("Este no es un triangulo escaleno")
+  } else {
+    // h = 2/lado1 raizcuadrada(semiperimetro(semiperimetro - lado1) (semiperimetro - lado2) (semiperimetro - lado3))
+    const semiperimetro = (lado1 + lado2 + lado3) / 2
+    const altura = 2/lado1 * Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3))
+    return altura
+  }
+}
