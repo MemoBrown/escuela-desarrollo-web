@@ -3,6 +3,7 @@
   --primary: #0086E5;
   --placeholder: #B3B7BE;
   --font: 'Hanken Grotesk', sans-serif;
+  --white: #ffffff
 }
 * {
   box-sizing: border-box;
@@ -19,15 +20,16 @@ body {
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  background-color: var(--text);
 }
 .card {
-  border: 2px solid var(--text);
+  border: 2px solid var(--white);
   padding: 30px;
   border-radius: 20px;
 }
 h1 {
   font-size: 20px;
-  color: var(--text);
+  color: var(--white);
   margin-bottom: 20px;
 }
 .input {
@@ -36,15 +38,15 @@ h1 {
   flex-flow: column;
 }
 .input label {
-  color: var(--text);
+  color: var(--white);
   font-size: 14px;
   margin-bottom: 2px;
 }
 .input input {
   border-radius: 8px;
-  border: 2px solid var(--text);
+  border: 2px solid var(--white);
   background-color: transparent;
-  color: var(--text);
+  color: var(--white);
   font-size: 16px;
   padding: 8px 12px;
   width: 350px;
@@ -58,8 +60,8 @@ h1 {
 button {
   font-size: 16px;
   background-color: var(--primary);
-  color: white;
-  border: 2px solid var(--text);
+  color: var(--white);
+  border: 2px solid var(--white);
   outline: none;
   cursor: pointer;
   border-radius: 8px;
