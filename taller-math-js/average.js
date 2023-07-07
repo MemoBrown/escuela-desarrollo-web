@@ -29,16 +29,32 @@ const esPar = (numberList) => {
 
 console.log(esPar);
 
-function calcularMediana(listaMediana) {
-  const listaEsPar = esPar(listaMediana)
+function calcularMediana(listaDesordenada) {
+  const listaOrdenada = ordenarLista(listaDesordenada)
+  const listaEsPar = esPar(listaOrdenada)
 
   if (listaEsPar) {
-    const numerosMitadLista = listaMediana.slice((listaMediana.length / 2) - 1, (listaMediana.length / 2) + 1).map(Number)
+    const numerosMitadLista = listaOrdenada.slice((listaOrdenada.length / 2) - 1, (listaOrdenada.length / 2) + 1).map(Number)
     const indexMitadListaPar = calcularPromedio(numerosMitadLista)
     console.log(indexMitadListaPar);
   } else {
-    const indexMitadListaImpar =  Math.floor(listaMediana.length / 2)
-    const medianaImpar = listaMediana[indexMitadListaImpar]
+    const indexMitadListaImpar =  Math.floor(listaOrdenada.length / 2)
+    const medianaImpar = listaOrdenada[indexMitadListaImpar]
     console.log(medianaImpar);
   }
+}
+
+function ordenarLista(listaDesordenada) {
+  const listaOrdenada = listaDesordenada.sort((valorAcumulado, nuevoValor) =>
+    valorAcumulado - nuevoValor
+    // if (valorAcumulado > nuevoValor) {
+    //   return 1
+    // } else if (valorAcumulado == nuevoValor) {
+    //   return 0
+    // } else if (valorAcumulado < nuevoValor) {
+    //   return -1
+    // }
+  )
+
+  return listaOrdenada
 }
