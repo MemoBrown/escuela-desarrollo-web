@@ -44,9 +44,45 @@ function calcularMediana(listaDesordenada) {
   }
 }
 
+function calcularModa(lista) {
+  const listaCount = {}
+
+  for (let index = 0; index < lista.length; index++) {
+    const element = lista[index];
+
+    if (listaCount[element]) {
+      listaCount[element] += 1
+    } else {
+      listaCount[element] = 1
+    }
+  }
+  const listaArray = Object.entries(listaCount)
+  const listaArrayOrdenada = ordenarListaBidimensional(listaArray, 1)
+  const listaMaxNumber = listaArrayOrdenada[listaArrayOrdenada.length - 1]
+  const moda = listaMaxNumber[0]
+  return moda
+  // console.log({listaArray, listaArrayOrdenada, listaMaxNumber});
+  // console.log(`La moda es: ${listaMaxNumber[0]}`);
+}
+
 function ordenarLista(listaDesordenada) {
   const listaOrdenada = listaDesordenada.sort((valorAcumulado, nuevoValor) =>
     valorAcumulado - nuevoValor
+    // if (valorAcumulado > nuevoValor) {
+    //   return 1
+    // } else if (valorAcumulado == nuevoValor) {
+    //   return 0
+    // } else if (valorAcumulado < nuevoValor) {
+    //   return -1
+    // }
+  )
+
+  return listaOrdenada
+}
+
+function ordenarListaBidimensional(listaDesordenada, i) {
+  const listaOrdenada = listaDesordenada.sort((valorAcumulado, nuevoValor) =>
+    valorAcumulado[i] - nuevoValor[i]
     // if (valorAcumulado > nuevoValor) {
     //   return 1
     // } else if (valorAcumulado == nuevoValor) {
