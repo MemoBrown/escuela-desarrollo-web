@@ -1,4 +1,7 @@
-function calcularPromedio(lista) {
+const MathLibrary = {}
+
+
+MathLibrary.calcularPromedio = function calcularPromedio(lista) {
   // sumar todos los elementos del array / cantidad de elementos
   // let sumaLista = 0
 
@@ -19,7 +22,7 @@ function calcularPromedio(lista) {
   console.log(average);
 }
 
-const esPar = (numberList) => {
+MathLibrary.esPar = esPar = (numberList) => {
   if (numberList.length % 2 == 0) {
     return true
   } else {
@@ -27,9 +30,7 @@ const esPar = (numberList) => {
   }
 }
 
-console.log(esPar);
-
-function calcularMediana(listaDesordenada) {
+MathLibrary.calcularMediana = function calcularMediana(listaDesordenada) {
   const listaOrdenada = ordenarLista(listaDesordenada)
   const listaEsPar = esPar(listaOrdenada)
 
@@ -44,7 +45,7 @@ function calcularMediana(listaDesordenada) {
   }
 }
 
-function calcularModa(lista) {
+MathLibrary.calcularModa = function calcularModa(lista) {
   const listaCount = {}
 
   for (let index = 0; index < lista.length; index++) {
@@ -65,7 +66,7 @@ function calcularModa(lista) {
   // console.log(`La moda es: ${listaMaxNumber[0]}`);
 }
 
-function ordenarLista(listaDesordenada) {
+MathLibrary.ordenarLista = function ordenarLista(listaDesordenada) {
   const listaOrdenada = listaDesordenada.sort((valorAcumulado, nuevoValor) =>
     valorAcumulado - nuevoValor
     // if (valorAcumulado > nuevoValor) {
@@ -80,7 +81,7 @@ function ordenarLista(listaDesordenada) {
   return listaOrdenada
 }
 
-function ordenarListaBidimensional(listaDesordenada, i) {
+MathLibrary.ordenarListaBidimensional = function ordenarListaBidimensional(listaDesordenada, i) {
   const listaOrdenada = listaDesordenada.sort((valorAcumulado, nuevoValor) =>
     valorAcumulado[i] - nuevoValor[i]
     // if (valorAcumulado > nuevoValor) {
