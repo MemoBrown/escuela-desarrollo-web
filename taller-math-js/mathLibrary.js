@@ -31,12 +31,12 @@ MathLibrary.esPar = esPar = (numberList) => {
 }
 
 MathLibrary.calcularMediana = function calcularMediana(listaDesordenada) {
-  const listaOrdenada = ordenarLista(listaDesordenada)
-  const listaEsPar = esPar(listaOrdenada)
+  const listaOrdenada = MathLibrary.ordenarLista(listaDesordenada)
+  const listaEsPar = MathLibrary.esPar(listaOrdenada)
 
   if (listaEsPar) {
     const numerosMitadLista = listaOrdenada.slice((listaOrdenada.length / 2) - 1, (listaOrdenada.length / 2) + 1).map(Number)
-    const indexMitadListaPar = calcularPromedio(numerosMitadLista)
+    const indexMitadListaPar = MathLibrary.calcularPromedio(numerosMitadLista)
     console.log(indexMitadListaPar);
   } else {
     const indexMitadListaImpar =  Math.floor(listaOrdenada.length / 2)
