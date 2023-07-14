@@ -18,6 +18,26 @@ const medianaPorPersona = (personName) => {
     return job.salary
   })
   
-  const medianaSalary = MathLibrary.calcularMediana(listSalaries)
+  const medianSalary = MathLibrary.calcularMediana(listSalaries)
+  console.log(medianSalary);
+}
 
+const personProyection = (personName) => {
+  const jobs = findPerson(personName).jobs
+  
+  let growthRate = []
+
+  for (let i = 1; i < jobs.length; i++) {
+    const currentSalary = jobs[i].salary
+    const previousSalary = jobs[i - 1].salary
+    const growth = currentSalary - previousSalary
+    const growthSalaryRate = growth / previousSalary
+    growthRate.push(growthSalaryRate)
+  }
+  const medianGrowthRate = MathLibrary.calcularMediana(growthRate)
+
+  const lastSalary = jobs[jobs.length - 1].salary
+  const growth = lastSalary * medianGrowthRate
+  const newSalary = lastSalary + growth
+  return `Tu nuevo salario es ${Math.floor(newSalary)} usd`
 }

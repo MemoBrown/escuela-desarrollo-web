@@ -18,8 +18,8 @@ MathLibrary.calcularPromedio = function calcularPromedio(lista) {
   const sumaLista = lista.reduce((valorAcumulado, valorActual) => valorAcumulado + valorActual) // En este ejemplo esta recibien una arrow function anonima
 
   const average = sumaLista / lista.length
-
   console.log(average);
+  return average;
 }
 
 MathLibrary.esPar = esPar = (numberList) => {
@@ -37,10 +37,12 @@ MathLibrary.calcularMediana = function calcularMediana(listaDesordenada) {
   if (listaEsPar) {
     const numerosMitadLista = listaOrdenada.slice((listaOrdenada.length / 2) - 1, (listaOrdenada.length / 2) + 1).map(Number)
     const indexMitadListaPar = MathLibrary.calcularPromedio(numerosMitadLista)
+    return indexMitadListaPar
     console.log(indexMitadListaPar);
   } else {
     const indexMitadListaImpar =  Math.floor(listaOrdenada.length / 2)
     const medianaImpar = listaOrdenada[indexMitadListaImpar]
+    return medianaImpar
     console.log(medianaImpar);
   }
 }
@@ -58,7 +60,7 @@ MathLibrary.calcularModa = function calcularModa(lista) {
     }
   }
   const listaArray = Object.entries(listaCount)
-  const listaArrayOrdenada = ordenarListaBidimensional(listaArray, 1)
+  const listaArrayOrdenada = MathLibrary.ordenarListaBidimensional(listaArray, 1)
   const listaMaxNumber = listaArrayOrdenada[listaArrayOrdenada.length - 1]
   const moda = listaMaxNumber[0]
   return moda
