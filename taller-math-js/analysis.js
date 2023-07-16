@@ -55,3 +55,13 @@ for (person of salaries) {
   }
 }
 console.log({companies});
+
+const medianCompany = (companyName, year) => {
+  if (!companies[companyName]) {
+    console.warn("La empresa no existe");
+  } else if(!companies[companyName][year]) {
+    console.warn("La empresa no dio salarios ese año");
+  } else {
+    return MathLibrary.calcularMediana(companies[companyName][year])
+  }
+}
