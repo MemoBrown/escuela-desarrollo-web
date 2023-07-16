@@ -39,5 +39,19 @@ const personProyection = (personName) => {
   const lastSalary = jobs[jobs.length - 1].salary
   const growth = lastSalary * medianGrowthRate
   const newSalary = lastSalary + growth
-  return `Tu nuevo salario es ${Math.floor(newSalary)} usd`
+  return `Tu nuevo salario es $${Math.floor(newSalary)} usd`
 }
+
+const companies = {}
+for (person of salaries) {
+  for (job of person.jobs) {
+    if (!companies[job.company]) {
+      companies[job.company] = {}
+    }
+    if (!companies[job.company][job.year]) {
+      companies[job.company][job.year] = [] 
+    }
+    companies[job.company][job.year].push(job.salary)
+  }
+}
+console.log({companies});
