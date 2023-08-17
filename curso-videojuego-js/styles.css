@@ -1,1 +1,25 @@
 /* font-family: 'Press Start 2P', cursive; */
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  padding: 16px;
+}
+
+#game {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+@media screen and (max-width: 900px) {
+  .buttons {
+    flex-wrap: wrap;
+  }
+}

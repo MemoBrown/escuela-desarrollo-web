@@ -16,19 +16,23 @@
   <title>Game</title>
 </head>
 <body>
-  <canvas id="game"></canvas>
-  <div class="buttons">
-    <button id="up">Arriba</button>
-    <button id="left">Izquierda</button>
-    <button id="right">Derecha</button>
-    <button id="down">Abajo</button>
-  </div>
-  <div class="messages">
-    <!-- TODO -->
-    <p>Texto ejemplo</p>
+  <div class="game-container">
+    <canvas id="game" class="nes-container is-rounded nes-btn is-warning"></canvas>
+
+    <div class="buttons">
+      <button id="up" class="nes-btn is-primary">Arriba</button>
+      <button id="left" class="nes-btn is-primary">Izquierda</button>
+      <button id="right" class="nes-btn is-primary">Derecha</button>
+      <button id="down" class="nes-btn is-primary">Abajo</button>
+    </div>
+
+    <div class="messages">
+      <!-- TODO -->
+      <p>Texto ejemplo</p>
+    </div>
   </div>
 
-  <script src="./map.js"></script>
+  <script src="./maps.js"></script>
   <script src="./game.js"></script>
 </body>
 </html>
