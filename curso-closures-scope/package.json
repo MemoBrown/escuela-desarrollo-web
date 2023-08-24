@@ -1,0 +1,12 @@
+{
+  "name": "curso-closures-scope",
+  "version": "1.0.0",
+  "description": "### Que es el Scope? El alcance que determina la accesibilidad de las variables. Tipos de \"scope\" - Global - Function - Block",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
