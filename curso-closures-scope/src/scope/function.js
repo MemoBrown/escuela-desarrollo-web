@@ -1,6 +1,7 @@
 function greeting() {
   let userName = "Gabriela"
-  console.log(userName);
+  console.log("🚀 ~ file: function.js:3 ~ greeting ~ userName:", userName)
+
 
   if (userName === "Gabriela") {
     console.log(`Hello ${userName}`);
@@ -9,4 +10,3 @@ function greeting() {
 }
 
 greeting()
-console.log(userName);
